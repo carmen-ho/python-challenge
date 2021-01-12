@@ -16,6 +16,8 @@ with open(csvpath) as csvfile:
     li_votes = 0
     otooley_votes = 0
 
+# loop thru to count votes
+
     for row in csvreader: 
 
         total_votes +=1
@@ -29,19 +31,22 @@ with open(csvpath) as csvfile:
         elif row[2] == "O'Tooley":
             otooley_votes +=1
 
+# create a dictionary to put candidates and vote together then use key to find max out of list
+
 candidates = ["Khan", "Correy", "Li","O'Tooley"]
 votes = [khan_votes, correy_votes,li_votes,otooley_votes]
 
 candidates_and_votes = dict(zip(candidates,votes))
 key = max(candidates_and_votes, key=candidates_and_votes.get)
 
-# win = candidates_and_votes.get
-# winner = max(candidates_and_votes, win)
+# calculate % of votes
 
 khan_percent = (khan_votes/total_votes) *100
 correy_percent = (correy_votes/total_votes) * 100
 li_percent = (li_votes/total_votes)* 100
 otooley_percent = (otooley_votes/total_votes) * 100
+
+#to print statement
 
 
 print(f"Election Results")
@@ -55,6 +60,8 @@ print(f"O'Tooley: {otooley_percent:.3f}% ({otooley_votes})")
 print(f"-----------------------")
 print(f"Winner: {key}")
 print(f"-----------------------")
+
+#to write to csv file
 
 
 data_output = os.path.join("Analysis", "bankdata.csv")
